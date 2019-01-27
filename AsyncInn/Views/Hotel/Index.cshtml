@@ -13,7 +13,7 @@
         <h2>Hotels</h2>
         <p>This is a complete list of all Async Inn locations.</p>
         <p>
-            <a asp-action="Create">Create New</a>
+            <a asp-action="Create">Click here to create a new Async Inn location.</a>
         </p>
     </header>
     <table class="table">
@@ -62,7 +62,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Country)
                     </td>
-                    <td>
+                    <td  class="item-links">
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>

@@ -25,7 +25,7 @@ namespace AsyncInn.Models
     public enum State
     {
         [Description("N/A")]
-        not_a_state,
+        none,
 
         [Description("Alabama")]
         AL,

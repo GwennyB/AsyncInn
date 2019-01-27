@@ -10,12 +10,12 @@
 
 <body>
     <header>
-        <h2>Room Config</h2>
-        <p>An amenity configuration is the grouping of amenities found in a particular room.</p>
-        <p>Use this page to create an amenity configuration for an existing room.</p>
-        <p>(To create a room to configure, visit the 'Room Plans' page.)</p>
+        <h2>Amenity Configurations</h2>
+        <p>An amenity configuration is the grouping of amenities found in a particular room plan.</p>
+        <p>Use this page to create an amenity configuration for an existing room plan.</p>
+        <p>(To create a room plan to configure, visit the 'Room Plans' page.)</p>
         <p>
-            <a asp-action="Create">Create New</a>
+            <a asp-action="Create">Click here to add amenities to an existing room plan.</a>
         </p>
     </header>
     <table class="table">
@@ -40,7 +40,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Amenity.ID)
                     </td>
-                    <td>
+                    <td class="item-links">
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
