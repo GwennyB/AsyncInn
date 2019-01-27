@@ -1,49 +1,53 @@
 ﻿@model IEnumerable<AsyncInn.Models.RoomConfig>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
+
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomPlan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amenity)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomPlan.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amenity.ID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <header>
+        <h2>Room Config</h2>
+        <p>An amenity configuration is the grouping of amenities found in a particular room.</p>
+        <p>Use this page to create an amenity configuration for an existing room.</p>
+        <p>(To create a room to configure, visit the 'Room Plans' page.)</p>
+    </header>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomPlan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amenity)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomPlan.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amenity.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

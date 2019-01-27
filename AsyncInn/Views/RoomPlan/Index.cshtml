@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<AsyncInn.Models.RoomPlan>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
 <body>
+    <header>
+        <h2>Room Plans</h2>
+        <p>Room plans are combinations of size layouts and amenity groups.</p>
+        <p>Create a new room plan by selecting the room size.</p>
+        <p>Configure the amenities for the new room plan on the 'Amenity Configurations' page.</p>
+    </header>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
