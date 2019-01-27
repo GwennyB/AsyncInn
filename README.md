@@ -9,7 +9,10 @@ This ASP.NET Core web application is a full-CRUD SQL Server based room 'inventor
 # Installation
 1. Clone this repo.
 2. Open /AsyncInn/AsyncInn/AsyncInn.csproj (in Visual Studio 2017 or later).
-3. ??? build DB ???
+3. Build database:
+   - Open NuGet Package Manager Console (Tools > NuGet Package Manager > Package Manager Console):
+      PM> Add-Migration initial
+   - Confirm DB build in SQL Object Explorer (look for 'AsyncInn')
 4. Launch page by pressing green arrow in 'Standard' toolbar with 'IIS Express' selected.
 
 # Architecture
@@ -30,7 +33,7 @@ CONTROLLERS
 
 
 # Credit
-Logo design: https://logojoy.com/
+Logo graphics: https://www.freeiconspng.com/img/25314
 
 # License
 MIT License
