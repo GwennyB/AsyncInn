@@ -24,11 +24,11 @@ namespace AsyncInn.Data
         }
 
         // Add DB tables
-        public DbSet<Amenity> Amenities { get; set; }
-        public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Inventory> RoomInventory { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<RoomConfig> RoomConfigs { get; set; }
-        public DbSet<RoomPlan> RoomPlans { get; set; }
+        public DbSet<Amenity> Amenity { get; set; }
+        public DbSet<Hotel> Hotel { get; set; }
+        public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<Location> Location { get; set; }
+        public DbSet<RoomConfig> RoomConfig { get; set; }
+        public DbSet<RoomPlan> RoomPlan { get; set; }
     }
 }

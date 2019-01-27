@@ -10,10 +10,9 @@ namespace AsyncInn.Models
         public int ID { get; set; }
         public Layout Layout { get; set; }
 
-        public ICollection<RoomConfig> RoomConfigs { get; set; }
-
+        public ICollection<RoomConfig> RoomConfigGroup { get; set; }
     }
-    
+
     public enum Layout
     {
         Studio,

@@ -19,6 +19,9 @@ namespace AsyncInn.Models
     // CREDIT: http://codesqueeze.com/the-most-reusable-piece-of-code-everperiod/
     public enum State
     {
+        [Description("N/A")]
+        not_a_state,
+
         [Description("Alabama")]
         AL,
 
