@@ -11,6 +11,7 @@ namespace AsyncInn.Models
         public Layout Layout { get; set; }
 
         public ICollection<RoomConfig> RoomConfigGroup { get; set; }
+
     }
 
     public enum Layout

@@ -59,7 +59,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
         {
             if (id != inventory.HotelID)
             {

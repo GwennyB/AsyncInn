@@ -22,8 +22,7 @@ namespace AsyncInn.Controllers
         // GET: Hotel
         public async Task<IActionResult> Index()
         {
-            var asyncInnDbContext = _context.Hotel.Include(h => h.Location);
-            return View(await asyncInnDbContext.ToListAsync());
+            return View(await _context.Hotel.ToListAsync());
         }
 
         // GET: Hotel/Details/5
@@ -35,7 +34,6 @@ namespace AsyncInn.Controllers
             }
 
             var hotel = await _context.Hotel
-                .Include(h => h.Location)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
@@ -48,7 +46,6 @@ namespace AsyncInn.Controllers
         // GET: Hotel/Create
         public IActionResult Create()
         {
-            ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID");
             return View();
         }
 
@@ -57,7 +54,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone,LocationID")] Hotel hotel)
+        public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone,City,State,Country")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +62,6 @@ namespace AsyncInn.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID", hotel.LocationID);
             return View(hotel);
         }
 
@@ -82,7 +78,6 @@ namespace AsyncInn.Controllers
             {
                 return NotFound();
             }
-            ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID", hotel.LocationID);
             return View(hotel);
         }
 
@@ -91,7 +86,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone,LocationID")] Hotel hotel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone,City,State,Country")] Hotel hotel)
         {
             if (id != hotel.ID)
             {
@@ -118,7 +113,6 @@ namespace AsyncInn.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID", hotel.LocationID);
             return View(hotel);
         }
 
@@ -131,7 +125,6 @@ namespace AsyncInn.Controllers
             }
 
             var hotel = await _context.Hotel
-                .Include(h => h.Location)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {

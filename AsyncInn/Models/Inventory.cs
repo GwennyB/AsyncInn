@@ -7,6 +7,7 @@ namespace AsyncInn.Models
 {
     public class Inventory
     {
+        public int ID { get; set; }
         public int RoomNumber { get; set; }
         public decimal Rate { get; set; }
         public bool PetsOK { get; set; }
@@ -15,10 +16,10 @@ namespace AsyncInn.Models
         public int HotelID { get; set; }
         public int RoomPlanID { get; set; }
 
-        public ICollection<RoomPlan> RoomPlans { get; set; }
 
         // Navigation Properties
         public Hotel Hotel { get; set; }
         public RoomPlan RoomPlan { get; set; }
     }
+
 }
