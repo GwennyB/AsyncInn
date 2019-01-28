@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AsyncInn.Models.Inventory>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <header>
+        <h2>Rooms Inventory</h2>
+        <p>This is a complete inventory of all rooms in all Async Inn locations.</p>
+        <p>
+            <a asp-action="Create">Click here to add a room to a specific location.</a>
+        </p>
+    </header>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PetsOK)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hotel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomPlan)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PetsOK)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hotel.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomPlan.ID)
+                    </td>
+                    <td class="item-links">
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

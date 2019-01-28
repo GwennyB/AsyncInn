@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AsyncInn.Models.Amenity>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <header>
+        <h2>Amenities</h2>
+        <p>This is a complete list of all amenities available for installation in rooms at Async Inn locations.</p>
+        <p>
+            <a asp-action="Create">Click here to new amenities that can be installed in rooms.</a>
+        </p>
+    </header>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="item-links" >
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

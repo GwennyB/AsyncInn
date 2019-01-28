@@ -1,0 +1,114 @@
+﻿
+h1, h2, h3, h4, h5, h6, p, a, td, th {
+    color: white;
+    font-family: sans-serif;
+}
+
+h2 {
+    font-size: 3vw; 
+}
+
+h3 {
+    font-size: 2.5vw;
+}
+
+h4, h5, h6, th {
+    font-size: 1.8vw;
+}
+
+a, p, td {
+    font-size: 1.5vw;
+}
+
+body {
+    background-color: #368b8e;
+}
+
+header {
+    min-height: 50px;
+    margin-bottom: 10px;
+}
+
+header>h2, header>p {
+    text-align: center;
+    margin: 2vw;
+}
+
+
+nav {
+    margin-left: 5vw;
+    margin-top: 12vw;
+    float: left;
+    width: 30%;
+}
+
+    nav li > a {
+        display: block;
+        margin-bottom: 2vw;
+        font-size: 2vw;
+    }
+
+#logo {
+    position: relative;
+    display: inline-block;
+    width: 45%;
+}
+
+
+#logoimg {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+}
+
+
+#logotext {
+    width: 100%;
+    margin-top: 42%;
+    display: block;
+    text-align: center;
+    font-family: fantasy;
+}
+
+    #logotext > h1 {
+        font-size: 5.6vw;
+        font-weight: bold;
+    }
+
+    #logotext > p {
+        position: relative;
+        font-size: 3vw;
+    }
+
+table {
+    margin: 5vw auto;
+}
+
+td {
+    background-color: lightgray;
+    color: #368b8e;
+}
+
+th, td {
+    text-align: center;
+    font-size: 1.5vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+:link {
+    color: white;
+}
+
+:visited {
+    color: #01579B
+}
+
+.item-links {
+    color: white;
+    background-color: #368b8e;
+}
