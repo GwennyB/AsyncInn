@@ -42,23 +42,24 @@ This table standardizes abbreviations for states and relevant countries in the U
 
 # Usage
 Shown below are landing (default) pages for each table's interface.
+
 Home/Index:
-![home page](assets/run-home.png)
+![home page](assets/run-home.PNG)
 
 Inventory/Index:
-![home page](assets/run-inventory.png)
+![home page](assets/run-inventory.PNG)
 
 RoomPlan/Index:
-![home page](assets/run-roomplan.png)
+![home page](assets/run-roomplan.PNG)
 
 RoomConfig/Index:
-![home page](assets/run-roomconfig.png)
+![home page](assets/run-roomconfig.PNG)
 
 Amenity/Index;
-![home page](assets/run-amenity.png)
+![home page](assets/run-amenity.PNG)
 
 Hotel/Index;
-![home page](assets/run-hotel.png)
+![home page](assets/run-hotel.PNG)
 
 
 # Credit
