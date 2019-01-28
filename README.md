@@ -1,10 +1,5 @@
- Potentially unfamiliar terms link to informative sources
- Extensive API documentation
- Caveats and limitations mentioned up-front
-
-
 # AsyncInn
-This ASP.NET Core web application is a full-CRUD SQL Server based room 'inventory' management system for a fictional hotel chain. 
+This ASP.NET Core MVC web application is a full-CRUD SQL Server based room 'inventory' management system for a fictional hotel chain. 
 
 # Installation
 1. Clone this repo.
@@ -16,20 +11,54 @@ This ASP.NET Core web application is a full-CRUD SQL Server based room 'inventor
 4. Launch page by pressing green arrow in 'Standard' toolbar with 'IIS Express' selected.
 
 # Architecture
-MODEL
+MODEL - The classes define the data model. They are built to the database schema.  See "Database Schema" below for more detail.
 
+VIEW - This application uses Razor syntax to inject model data into HTML view templates.
 
-VIEWS
+CONTROLLER - Controllers exist for the splash page ('Home') and each (non-enum) table listed in the database schema. Each contains CRUD features to permit all allowed database data manipulation (some CRUD features are excluded for to support business rules (such as editing an amenity)).
 
+## Database Schema
+Inventory
+This table lists every room available in the entire Async Inn network of hotels. Each record in this table assigns a RoomConfig to a Hotel, and it sets location- and room-specific rules (such as room number, pricing, pets policy, and locally relevant room name). Rooms are identified by composite of HotelID and RoomNumber.
 
-CONTROLLERS
+RoomPlan
+This table groups a RoomConfig (ie – collection of amenities) to Layout and assigns that configuration to primary key RoomPlanID for reference in the Inventory table.
 
+RoomConfig
+This table associates amenities (AmenityID) to RoomPlan to fully configure a room. It is strictly intended to relate the room configurations to the amenities (ie – pure join), so it does not assign a unique identifier to each record.
 
-# Database Schema
+Amenity
+This table lists available room amenities and gives them unique identifiers (AmenityID). It is referenced by RoomConfig table to build up room configurations.
+
+Hotel
+This table identifies unique hotels and assigns them unique identifiers (primary = HOTEL_ID). It associates location name, address, and region (LOC_ID) details for each. The primary key is referenced by the Inventory table to associate specific rooms to locations.
+
+Layouts (Enum)
+This table standardizes nomenclature for the 3 available room formats (1-bedroom, 2-bedroom, studio), which is referenced by RoomPlan to associate with room configurations. 
+States (Enum), Country (Enum)
+This table standardizes abbreviations for states and relevant countries in the US for use in identifying locations in Hotel.
+
 ![database schema](assets/schema.png)
 
 # Usage
-![???](assets/???.png)
+Shown below are landing (default) pages for each table's interface.
+Home/Index:
+![home page](assets/run-home.png)
+
+Inventory/Index:
+![home page](assets/run-inventory.png)
+
+RoomPlan/Index:
+![home page](assets/run-roomplan.png)
+
+RoomConfig/Index:
+![home page](assets/run-roomconfig.png)
+
+Amenity/Index;
+![home page](assets/run-amenity.png)
+
+Hotel/Index;
+![home page](assets/run-hotel.png)
 
 
 # Credit

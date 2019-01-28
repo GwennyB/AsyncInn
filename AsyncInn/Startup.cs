@@ -16,13 +16,19 @@ namespace AsyncInn
 
         public IConfiguration Configuration { get; set; }
 
+        /// <summary>
+        /// Constructs startup object and maps Configuration
+        /// </summary>
+        /// <param name="configuration"> config properties set </param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// loads required dependencies and database build instructions (context and conn string)
+        /// </summary>
+        /// <param name="services"> collection of service descriptors </param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -32,7 +38,11 @@ namespace AsyncInn
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// configures HTTP request pipeline
+        /// </summary>
+        /// <param name="app"> mechanisms to configure request pipeline </param>
+        /// <param name="env"> defn of hosting environment </param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -8,6 +8,10 @@ namespace AsyncInn.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// GET: Home/Index
+        /// </summary>
+        /// <returns> loads Home/Index view </returns>
         public IActionResult Index()
         {
             return View();

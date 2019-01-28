@@ -9,12 +9,20 @@ namespace AsyncInn.Data
 {
     public class AsyncInnDbContext : DbContext
     {
-
+        /// <summary>
+        /// builds derived DbContext
+        /// </summary>
+        /// <param name="options"></param>
         public AsyncInnDbContext(DbContextOptions<AsyncInnDbContext> options) : base(options)
         {
 
         }
 
+        /// <summary>
+        /// overrides (DbContext virtual) method that builds out basic API structure
+        /// maps composite keys
+        /// </summary>
+        /// <param name="modelBuilder">  </param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Build composite key for amenity groups
