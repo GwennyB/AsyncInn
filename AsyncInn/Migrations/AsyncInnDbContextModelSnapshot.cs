@@ -29,6 +29,33 @@ namespace AsyncInn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenity");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Description = "coffee maker"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Description = "mini bar"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Description = "refrigerator"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Description = "air conditioning"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Description = "charging station"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
@@ -45,13 +72,65 @@ namespace AsyncInn.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Phone");
+                    b.Property<long>("Phone");
 
                     b.Property<int>("State");
 
                     b.HasKey("ID");
 
                     b.ToTable("Hotel");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "",
+                            City = "",
+                            Country = 1,
+                            Name = "Hotel AAA",
+                            Phone = 1112222L,
+                            State = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Address = "",
+                            City = "",
+                            Country = 2,
+                            Name = "Hotel BBB",
+                            Phone = 1112223333L,
+                            State = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Address = "",
+                            City = "",
+                            Country = 2,
+                            Name = "Hotel CCC",
+                            Phone = 1112221111L,
+                            State = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Address = "",
+                            City = "",
+                            Country = 0,
+                            Name = "Hotel DDD",
+                            Phone = 2223332222L,
+                            State = 1
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Address = "",
+                            City = "",
+                            Country = 0,
+                            Name = "Hotel EEE",
+                            Phone = 3334443333L,
+                            State = 1
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Inventory", b =>
@@ -59,8 +138,6 @@ namespace AsyncInn.Migrations
                     b.Property<int>("HotelID");
 
                     b.Property<int>("RoomNumber");
-
-                    b.Property<int>("ID");
 
                     b.Property<bool>("PetsOK");
 
@@ -96,9 +173,49 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("Layout");
 
+                    b.Property<string>("RoomType");
+
                     b.HasKey("ID");
 
                     b.ToTable("RoomPlan");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Layout = 0,
+                            RoomType = "Studio A"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Layout = 0,
+                            RoomType = "Studio B"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Layout = 1,
+                            RoomType = "One Bedroom A"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Layout = 1,
+                            RoomType = "One Bedroom B"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Layout = 2,
+                            RoomType = "Two Bedroom A"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Layout = 2,
+                            RoomType = "Two Bedroom B"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Inventory", b =>

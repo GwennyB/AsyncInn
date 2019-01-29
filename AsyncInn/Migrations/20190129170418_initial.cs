@@ -28,7 +28,7 @@ namespace AsyncInn.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<int>(nullable: false),
+                    Phone = table.Column<long>(nullable: false),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<int>(nullable: false),
                     Country = table.Column<int>(nullable: false)
@@ -44,7 +44,8 @@ namespace AsyncInn.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Layout = table.Column<int>(nullable: false)
+                    Layout = table.Column<int>(nullable: false),
+                    RoomType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,7 +58,6 @@ namespace AsyncInn.Migrations
                 {
                     RoomNumber = table.Column<int>(nullable: false),
                     HotelID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
                     Rate = table.Column<decimal>(nullable: false),
                     PetsOK = table.Column<bool>(nullable: false),
                     RoomPlanID = table.Column<int>(nullable: false)
@@ -101,6 +101,43 @@ namespace AsyncInn.Migrations
                         principalTable: "RoomPlan",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Amenity",
+                columns: new[] { "ID", "Description" },
+                values: new object[,]
+                {
+                    { 1, "coffee maker" },
+                    { 2, "mini bar" },
+                    { 3, "refrigerator" },
+                    { 4, "air conditioning" },
+                    { 5, "charging station" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotel",
+                columns: new[] { "ID", "Address", "City", "Country", "Name", "Phone", "State" },
+                values: new object[,]
+                {
+                    { 1, "", "", 1, "Hotel AAA", 1112222L, 1 },
+                    { 2, "", "", 2, "Hotel BBB", 1112223333L, 1 },
+                    { 3, "", "", 2, "Hotel CCC", 1112221111L, 1 },
+                    { 4, "", "", 0, "Hotel DDD", 2223332222L, 1 },
+                    { 5, "", "", 0, "Hotel EEE", 3334443333L, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RoomPlan",
+                columns: new[] { "ID", "Layout", "RoomType" },
+                values: new object[,]
+                {
+                    { 1, 0, "Studio A" },
+                    { 2, 0, "Studio B" },
+                    { 3, 1, "One Bedroom A" },
+                    { 4, 1, "One Bedroom B" },
+                    { 5, 2, "Two Bedroom A" },
+                    { 6, 2, "Two Bedroom B" }
                 });
 
             migrationBuilder.CreateIndex(
