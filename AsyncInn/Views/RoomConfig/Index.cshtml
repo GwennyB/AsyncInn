@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<AsyncInn.Models.RoomConfig>
-
 @{
     Layout = "_Layout";
 }
-
 <!DOCTYPE html>
-
 <html>
-
 <body>
     <header>
         <h2>Amenity Configurations</h2>
@@ -41,9 +37,9 @@
                         @Html.DisplayFor(modelItem => item.Amenity.ID)
                     </td>
                     <td class="item-links">
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                     </td>
                 </tr>
             }
@@ -51,3 +47,4 @@
     </table>
 </body>
 </html>
+
