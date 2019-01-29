@@ -155,7 +155,7 @@ namespace AsyncInn.Data
         }
 
 
-        // Add DB tables
+        // Add database tables
         public DbSet<Amenity> Amenity { get; set; }
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
