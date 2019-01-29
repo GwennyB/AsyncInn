@@ -29,13 +29,8 @@ namespace AsyncInn.Data
             modelBuilder.Entity<RoomConfig>().HasKey(ce => new { ce.RoomPlanID, ce.AmenityID });
             // Build composite key for inventory IDs
             modelBuilder.Entity<Inventory>().HasKey(ce => new { ce.HotelID, ce.RoomNumber });
-        }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // set composite key
-            modelBuilder.Entity<CourseEnrollments>().HasKey(ce => new { ce.CourseID, ce.StudentID });
-
+            // DB seed data
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel
                 {
@@ -56,7 +51,7 @@ namespace AsyncInn.Data
                     City = "",
                     State = State.AL,
                     Country = Country.Mexico
-                }, 
+                },
                 new Hotel
                 {
                     ID = 3,
@@ -94,33 +89,40 @@ namespace AsyncInn.Data
                 {
                     ID = 1,
                     Layout = Layout.Studio,
+                    RoomType = "Studio A"
                 },
                 new RoomPlan
                 {
                     ID = 2,
                     Layout = Layout.Studio,
+                    RoomType = "Studio B"
                 },
                 new RoomPlan
                 {
                     ID = 3,
                     Layout = Layout.OneBedroom,
+                    RoomType = "One Bedroom A"
                 },
                 new RoomPlan
                 {
                     ID = 4,
                     Layout = Layout.OneBedroom,
+                    RoomType = "One Bedroom B"
                 },
                 new RoomPlan
                 {
                     ID = 5,
                     Layout = Layout.TwoBedroom,
+                    RoomType = "Two Bedroom A"
                 },
                 new RoomPlan
                 {
                     ID = 6,
                     Layout = Layout.TwoBedroom,
-                }                
+                    RoomType = "Two Bedroom B"
+                }
                 );
+
             modelBuilder.Entity<Amenity>().HasData(
                 new Amenity
                 {
@@ -148,7 +150,10 @@ namespace AsyncInn.Data
                     Description = "charging station",
                 }
                 );
+
+
         }
+
 
         // Add DB tables
         public DbSet<Amenity> Amenity { get; set; }

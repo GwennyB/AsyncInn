@@ -10,11 +10,11 @@ using AsyncInn.Models;
 
 namespace AsyncInn.Controllers
 {
-    public class RoomPlansController : Controller
+    public class RoomPlanController : Controller
     {
         private readonly AsyncInnDbContext _context;
 
-        public RoomPlansController(AsyncInnDbContext context)
+        public RoomPlanController(AsyncInnDbContext context)
         {
             _context = context;
         }

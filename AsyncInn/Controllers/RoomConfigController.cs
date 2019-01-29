@@ -49,8 +49,9 @@ namespace AsyncInn.Controllers
         // GET: RoomConfig/Create
         public IActionResult Create()
         {
-            ViewData["AmenityID"] = new SelectList(_context.Amenity, "ID", "ID");
+            ViewData["AmenityID"] = new SelectList(_context.Amenity, "Description", "Description");
             ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "ID");
+            ViewData["RoomConfigGroup"] = new SelectList(_context.RoomConfig, "ID", "ID");
             return View();
         }
 
