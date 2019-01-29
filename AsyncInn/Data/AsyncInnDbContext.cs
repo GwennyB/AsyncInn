@@ -37,29 +37,29 @@ namespace AsyncInn.Data
                     ID = 1,
                     Name = "Hotel AAA",
                     Phone = 0001112222,
-                    Address = "",
-                    City = "",
-                    State = State.AL,
-                    Country = Country.Canada
+                    Address = "100 Main St",
+                    City = "Austin",
+                    State = State.TX,
+                    Country = Country.United_States
                 },
                 new Hotel
                 {
                     ID = 2,
                     Name = "Hotel BBB",
                     Phone = 1112223333,
-                    Address = "",
-                    City = "",
+                    Address = "200 Main St",
+                    City = "Birmingham",
                     State = State.AL,
-                    Country = Country.Mexico
+                    Country = Country.United_States
                 },
                 new Hotel
                 {
                     ID = 3,
                     Name = "Hotel CCC",
                     Phone = 1112221111,
-                    Address = "",
-                    City = "",
-                    State = State.AL,
+                    Address = "300 Main St",
+                    City = "Cancun",
+                    State = State.none,
                     Country = Country.Mexico
                 },
                 new Hotel
@@ -67,20 +67,20 @@ namespace AsyncInn.Data
                     ID = 4,
                     Name = "Hotel DDD",
                     Phone = 2223332222,
-                    Address = "",
-                    City = "",
-                    State = State.AL,
-                    Country = Country.United_States
+                    Address = "400 Main St",
+                    City = "Vancouver",
+                    State = State.none,
+                    Country = Country.Canada
                 },
                 new Hotel
                 {
                     ID = 5,
                     Name = "Hotel EEE",
                     Phone = 3334443333,
-                    Address = "",
-                    City = "",
-                    State = State.AL,
-                    Country = Country.United_States
+                    Address = "500 Main St",
+                    City = "Toronto",
+                    State = State.none,
+                    Country = Country.Canada
                 }
                 );
 

@@ -84,19 +84,19 @@ namespace AsyncInn.Migrations
                         new
                         {
                             ID = 1,
-                            Address = "",
-                            City = "",
-                            Country = 1,
+                            Address = "100 Main St",
+                            City = "Austin",
+                            Country = 0,
                             Name = "Hotel AAA",
                             Phone = 1112222L,
-                            State = 1
+                            State = 44
                         },
                         new
                         {
                             ID = 2,
-                            Address = "",
-                            City = "",
-                            Country = 2,
+                            Address = "200 Main St",
+                            City = "Birmingham",
+                            Country = 0,
                             Name = "Hotel BBB",
                             Phone = 1112223333L,
                             State = 1
@@ -104,32 +104,32 @@ namespace AsyncInn.Migrations
                         new
                         {
                             ID = 3,
-                            Address = "",
-                            City = "",
+                            Address = "300 Main St",
+                            City = "Cancun",
                             Country = 2,
                             Name = "Hotel CCC",
                             Phone = 1112221111L,
-                            State = 1
+                            State = 0
                         },
                         new
                         {
                             ID = 4,
-                            Address = "",
-                            City = "",
-                            Country = 0,
+                            Address = "400 Main St",
+                            City = "Vancouver",
+                            Country = 1,
                             Name = "Hotel DDD",
                             Phone = 2223332222L,
-                            State = 1
+                            State = 0
                         },
                         new
                         {
                             ID = 5,
-                            Address = "",
-                            City = "",
-                            Country = 0,
+                            Address = "500 Main St",
+                            City = "Toronto",
+                            Country = 1,
                             Name = "Hotel EEE",
                             Phone = 3334443333L,
-                            State = 1
+                            State = 0
                         });
                 });
 

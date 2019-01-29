@@ -120,11 +120,11 @@ namespace AsyncInn.Migrations
                 columns: new[] { "ID", "Address", "City", "Country", "Name", "Phone", "State" },
                 values: new object[,]
                 {
-                    { 1, "", "", 1, "Hotel AAA", 1112222L, 1 },
-                    { 2, "", "", 2, "Hotel BBB", 1112223333L, 1 },
-                    { 3, "", "", 2, "Hotel CCC", 1112221111L, 1 },
-                    { 4, "", "", 0, "Hotel DDD", 2223332222L, 1 },
-                    { 5, "", "", 0, "Hotel EEE", 3334443333L, 1 }
+                    { 1, "100 Main St", "Austin", 0, "Hotel AAA", 1112222L, 44 },
+                    { 2, "200 Main St", "Birmingham", 0, "Hotel BBB", 1112223333L, 1 },
+                    { 3, "300 Main St", "Cancun", 2, "Hotel CCC", 1112221111L, 0 },
+                    { 4, "400 Main St", "Vancouver", 1, "Hotel DDD", 2223332222L, 0 },
+                    { 5, "500 Main St", "Toronto", 1, "Hotel EEE", 3334443333L, 0 }
                 });
 
             migrationBuilder.InsertData(
