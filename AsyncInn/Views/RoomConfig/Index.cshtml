@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<AsyncInn.Models.RoomConfig>
-
 @{
     Layout = "_Layout";
 }
-
 <!DOCTYPE html>
-
 <html>
-
 <body>
     <header>
         <h2>Amenity Configurations</h2>
@@ -16,6 +12,10 @@
         <p>(To create a room plan to configure, visit the 'Room Plans' page.)</p>
         <p>
             <a asp-action="Create">Click here to add amenities to an existing room plan.</a>
+        </p>
+        <p>
+            <a asp-controller="Home"
+               asp-action="Index">Go Home</a>
         </p>
     </header>
     <table class="table">
@@ -35,14 +35,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RoomPlan.ID)
+                        @Html.DisplayFor(modelItem => item.RoomPlan.RoomType)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Amenity.ID)
+                        @Html.DisplayFor(modelItem => item.Amenity.Description)
                     </td>
                     <td class="item-links">
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
@@ -51,3 +51,4 @@
     </table>
 </body>
 </html>
+

@@ -7,10 +7,11 @@ namespace AsyncInn.Models
 {
     public class Inventory
     {
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public int RoomNumber { get; set; }
         public decimal Rate { get; set; }
         public bool PetsOK { get; set; }
+        public string RoomName { get; set; }
         
         // Foreign Keys
         public int HotelID { get; set; }

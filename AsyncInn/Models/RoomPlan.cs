@@ -9,6 +9,7 @@ namespace AsyncInn.Models
     {
         public int ID { get; set; }
         public Layout Layout { get; set; }
+        public string RoomType { get; set; }
 
         public ICollection<RoomConfig> RoomConfigGroup { get; set; }
 

@@ -14,29 +14,18 @@ namespace AsyncInn.Controllers
     {
         private readonly AsyncInnDbContext _context;
 
-        /// <summary>
-        /// build controller object
-        /// </summary>
-        /// <param name="context"></param>
         public RoomPlanController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
-        /// <summary>
-        /// GET: RoomPlan/Index
-        /// </summary>
-        /// <returns> RoomPlan view loaded with RoomPlan table data </returns>
+        // GET: RoomPlans
         public async Task<IActionResult> Index()
         {
             return View(await _context.RoomPlan.ToListAsync());
         }
 
-        /// <summary>
-        /// GET: RoomPlan/Details/{id}
-        /// </summary>
-        /// <param name="id"> RoomPlan row ID number </param>
-        /// <returns> RoomPlan view loaded with RoomPlan table data (single row) </returns>
+        // GET: RoomPlans/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -54,20 +43,15 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        /// <summary>
-        /// GET: RoomPlan/Create
-        /// </summary>
-        /// <returns> RoomPlan/Create view </returns>
+        // GET: RoomPlans/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        /// <summary>
-        /// POST: RoomPlan/Create
-        /// </summary>
-        /// <param name="roomPlan"> RoomPlan object </param>
-        /// <returns> RoomPlan/Create view loaded with single RoomPlan object </returns>
+        // POST: RoomPlans/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Layout")] RoomPlan roomPlan)
@@ -81,11 +65,58 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        /// <summary>
-        /// GET: RoomPlan/Delete/5
-        /// </summary>
-        /// <param name="id"> RoomPlan row ID number </param>
-        /// <returns> RoomPlan/Delete view loaded with chosen RoomPlan object </returns>
+        // GET: RoomPlans/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var roomPlan = await _context.RoomPlan.FindAsync(id);
+            if (roomPlan == null)
+            {
+                return NotFound();
+            }
+            return View(roomPlan);
+        }
+
+        // POST: RoomPlans/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Layout")] RoomPlan roomPlan)
+        {
+            if (id != roomPlan.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(roomPlan);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!RoomPlanExists(roomPlan.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(roomPlan);
+        }
+
+        // GET: RoomPlans/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -103,11 +134,7 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        /// <summary>
-        /// POST: RoomPlan/Delete/5
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns> redirect to RoomPlan Index </returns>
+        // POST: RoomPlans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -118,11 +145,6 @@ namespace AsyncInn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        /// <summary>
-        /// checks whether a RoomPlan exists in DB
-        /// </summary>
-        /// <param name="id"> ID of RoomPlan to check </param>
-        /// <returns> true if exists, false if not </returns>
         private bool RoomPlanExists(int id)
         {
             return _context.RoomPlan.Any(e => e.ID == id);
