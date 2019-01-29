@@ -50,7 +50,7 @@ namespace AsyncInn.Controllers
         public IActionResult Create()
         {
             ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name");
-            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "Layout");
+            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "RoomType");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID,RoomName")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace AsyncInn.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "ID", inventory.HotelID);
-            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "ID", inventory.RoomPlanID);
+            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name", inventory.HotelID);
+            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "RoomType", inventory.RoomPlanID);
             return View(inventory);
         }
 
@@ -85,8 +85,8 @@ namespace AsyncInn.Controllers
             {
                 return NotFound();
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "ID", inventory.HotelID);
-            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "ID", inventory.RoomPlanID);
+            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name", inventory.HotelID);
+            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "RoomType", inventory.RoomPlanID);
             return View(inventory);
         }
 
@@ -122,8 +122,8 @@ namespace AsyncInn.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "ID", inventory.HotelID);
-            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "ID", inventory.RoomPlanID);
+            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name", inventory.HotelID);
+            ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "RoomType", inventory.RoomPlanID);
             return View(inventory);
         }
 

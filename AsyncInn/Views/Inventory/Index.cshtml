@@ -24,16 +24,22 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Hotel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomPlan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomName)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Rate)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PetsOK)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Hotel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RoomPlan)
                 </th>
                 <th></th>
             </tr>
@@ -41,28 +47,31 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.ID)
-                    </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PetsOK)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hotel.ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RoomPlan.ID)
-                    </td>
-                    <td class="item-links">
-                        @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomPlan.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetsOK)
+                </td>
+                <td class="item-links">
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) @*|
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
             }
         </tbody>
     </table>
