@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,11 @@ namespace AsyncInn
 
             services.AddDbContext<AsyncInnDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // TODO: Register DB interface & service
+            services.AddScoped<IAmenity, AmenityService>();
+            services.AddScoped<IHotel, HotelService>();
+            services.AddScoped<IRoomPlan, RoomPlanService>();
 
         }
 
