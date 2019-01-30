@@ -27,9 +27,9 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Inventory/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int HotelID, int RoomNumber)
         {
-            if (id == null)
+            if (HotelID < 1 || RoomNumber < 1)
             {
                 return NotFound();
             }
@@ -37,7 +37,7 @@ namespace AsyncInn.Controllers
             var inventory = await _context.Inventory
                 .Include(i => i.Hotel)
                 .Include(i => i.RoomPlan)
-                .FirstOrDefaultAsync(m => m.HotelID == id);
+                .FirstOrDefaultAsync(m => m.HotelID == HotelID && m.RoomNumber == RoomNumber);
             if (inventory == null)
             {
                 return NotFound();
