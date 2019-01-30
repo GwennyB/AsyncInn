@@ -27,7 +27,7 @@ namespace AsyncInn.Controllers
         }
 
         // GET: RoomPlans/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -58,22 +58,16 @@ namespace AsyncInn.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(roomPlan);
-                await _context.SaveChangesAsync();
+                await _context.CreateRoomPlan(roomPlan);
                 return RedirectToAction(nameof(Index));
             }
             return View(roomPlan);
         }
 
         // GET: RoomPlans/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var roomPlan = await _context.RoomPlan.FindAsync(id);
+            var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
             if (roomPlan == null)
             {
                 return NotFound();
@@ -97,8 +91,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(roomPlan);
-                    await _context.SaveChangesAsync();
+                    await _context.UpdateRoomPlan(roomPlan);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +110,15 @@ namespace AsyncInn.Controllers
         }
 
         // GET: RoomPlans/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var roomPlan = await _context.RoomPlan
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var roomPlan = _context.GetRoomPlans()
+                .FirstOrDefault(m => m.ID == id);
             if (roomPlan == null)
             {
                 return NotFound();
@@ -139,15 +132,14 @@ namespace AsyncInn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var roomPlan = await _context.RoomPlan.FindAsync(id);
-            _context.RoomPlan.Remove(roomPlan);
-            await _context.SaveChangesAsync();
+            var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
+            await _context.DeleteRoomPlan(roomPlan);
             return RedirectToAction(nameof(Index));
         }
 
         private bool RoomPlanExists(int id)
         {
-            return _context.RoomPlan.Any(e => e.ID == id);
+            return _context.GetRoomPlans().Any(e => e.ID == id);
         }
     }
 }
