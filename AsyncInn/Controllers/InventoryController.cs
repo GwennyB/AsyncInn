@@ -73,14 +73,14 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Inventory/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int HotelID, int RoomNumber)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var inventory = await _context.Inventory.FindAsync(id);
+            var inventory = await _context.Inventory.FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
             if (inventory == null)
             {
                 return NotFound();
@@ -95,12 +95,12 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
+        public async Task<IActionResult> Edit(int HotelID, int RoomNumber, [Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
         {
-            if (id != inventory.HotelID)
-            {
-                return NotFound();
-            }
+            //if (id != inventory.HotelID)
+            //{
+            //    return NotFound();
+            //}
 
             if (ModelState.IsValid)
             {
@@ -128,17 +128,17 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Inventory/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int HotelID, int RoomNumber)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
             var inventory = await _context.Inventory
                 .Include(i => i.Hotel)
                 .Include(i => i.RoomPlan)
-                .FirstOrDefaultAsync(m => m.HotelID == id);
+                .FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
             if (inventory == null)
             {
                 return NotFound();
@@ -150,10 +150,10 @@ namespace AsyncInn.Controllers
         // POST: Inventory/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int HotelID, int RoomNumber)
         {
-            var inventory = await _context.Inventory.FindAsync(id);
-            _context.Inventory.Remove(inventory);
+            var inventory = await _context.Inventory.FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
+        _context.Inventory.Remove(inventory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
