@@ -1,7 +1,7 @@
 ﻿@model AsyncInn.Models.Amenity
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 <div>
     <h4>Amenity</h4>
     <hr />
-    <dl class="row">
+    <dl class="row details-table">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
