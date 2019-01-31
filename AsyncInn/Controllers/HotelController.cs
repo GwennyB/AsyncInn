@@ -7,34 +7,46 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class HotelController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IHotel _context;
 
-        public HotelController(AsyncInnDbContext context)
+        public HotelController(IHotel context)
         {
             _context = context;
         }
 
         // GET: Hotel
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string searchString)
         {
-            return View(await _context.Hotel.ToListAsync());
+            var searchResults = from hotel in _context.GetHotels()
+                                select hotel;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchResults = searchResults.Where(s => 
+                    s.Name.ToLower().Contains(searchString.ToLower()) ||
+                    s.Address.ToLower().Contains(searchString.ToLower()) ||
+                    s.City.ToLower().Contains(searchString.ToLower())
+                    );
+                return View(searchResults);
+            }
+            return View(_context.GetHotels());
         }
 
         // GET: Hotel/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var hotel = await _context.Hotel
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var hotel = _context.GetHotels()
+                .FirstOrDefault(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -53,27 +65,26 @@ namespace AsyncInn.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone,City,State,Country")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
+                await _context.CreateHotel(hotel);
                 return RedirectToAction(nameof(Index));
             }
             return View(hotel);
         }
 
         // GET: Hotel/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var hotel = await _context.Hotel.FindAsync(id);
+            var hotel = _context.GetHotels().FirstOrDefault(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -97,8 +108,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(hotel);
-                    await _context.SaveChangesAsync();
+                    await _context.UpdateHotel(hotel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +127,15 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Hotel/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var hotel = await _context.Hotel
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var hotel = _context.GetHotels()
+                .FirstOrDefault(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -139,15 +149,14 @@ namespace AsyncInn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
-            _context.Hotel.Remove(hotel);
-            await _context.SaveChangesAsync();
+            var hotel = _context.GetHotels().FirstOrDefault(m => m.ID == id);
+            await _context.DeleteHotel(hotel);
             return RedirectToAction(nameof(Index));
         }
 
         private bool HotelExists(int id)
         {
-            return _context.Hotel.Any(e => e.ID == id);
+            return _context.GetHotels().Any(e => e.ID == id);
         }
     }
 }

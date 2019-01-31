@@ -1,7 +1,7 @@
 ﻿@model AsyncInn.Models.RoomPlan
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 <div>
     <h4>RoomPlan</h4>
     <hr />
-    <dl class="row">
+    <dl class="row details-table">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Layout)
         </dt>
@@ -21,7 +21,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div class="backtolist">
     @*<a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |*@
     <a asp-action="Index">Back to List</a>
 </div>

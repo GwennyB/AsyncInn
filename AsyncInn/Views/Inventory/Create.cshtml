@@ -1,66 +1,63 @@
 ﻿@model AsyncInn.Models.Inventory
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
 <body>
-
-<h4>Inventory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-            <label asp-for="ID" class="control-label"></label>
-            <input asp-for="ID" class="form-control" />
-            <span asp-validation-for="ID" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="RoomNumber" class="control-label"></label>
-                <input asp-for="RoomNumber" class="form-control" />
-                <span asp-validation-for="RoomNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomName" class="control-label"></label>
-                <input asp-for="RoomName" class="form-control" />
-                <span asp-validation-for="RoomName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rate" class="control-label"></label>
-                <input asp-for="Rate" class="form-control" />
-                <span asp-validation-for="Rate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="PetsOK" /> @Html.DisplayNameFor(model => model.PetsOK)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="HotelID" class="control-label"></label>
-                <select asp-for="HotelID" class="form-control" asp-items="ViewBag.HotelID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomPlanID" class="control-label"></label>
-                <select asp-for="RoomPlanID" class="form-control" asp-items="ViewBag.RoomPlanID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>Inventory</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<div class="form-group">
+                        <label asp-for="ID" class="control-label"></label>
+                        <input asp-for="ID" class="form-control" />
+                        <span asp-validation-for="ID" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="RoomNumber" class="control-label"></label>
+                    <input asp-for="RoomNumber" class="form-control" />
+                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoomName" class="control-label"></label>
+                    <input asp-for="RoomName" class="form-control" />
+                    <span asp-validation-for="RoomName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rate" class="control-label"></label>
+                    <input asp-for="Rate" class="form-control" />
+                    <span asp-validation-for="Rate" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="PetsOK" /> @Html.DisplayNameFor(model => model.PetsOK)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HotelID" class="control-label"></label>
+                    <select asp-for="HotelID" class="form-control" asp-items="ViewBag.HotelID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoomPlanID" class="control-label"></label>
+                    <select asp-for="RoomPlanID" class="form-control" asp-items="ViewBag.RoomPlanID"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="backtolist">
+        <a asp-action="Index">Back to List</a>
+    </div>
+    @*@section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
 </body>
 </html>

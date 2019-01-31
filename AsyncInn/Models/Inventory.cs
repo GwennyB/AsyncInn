@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace AsyncInn.Models
         public int RoomNumber { get; set; }
         public decimal Rate { get; set; }
         public bool PetsOK { get; set; }
+        [DisplayName("Room Name")]
         public string RoomName { get; set; }
         
         // Foreign Keys

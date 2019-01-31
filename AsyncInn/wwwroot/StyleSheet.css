@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6, p, a, td, th {
 }
 
 h2 {
-    font-size: 3vw; 
+    font-size: 3vw;
 }
 
 h3 {
@@ -29,10 +29,10 @@ header {
     margin-bottom: 10px;
 }
 
-header>h2, header>p {
-    text-align: center;
-    margin: 2vw;
-}
+    header > h2, header > p {
+        text-align: center;
+        margin: 2vw;
+    }
 
 
 nav {
@@ -100,6 +100,40 @@ th, td {
     padding-bottom: 5px;
 }
 
+h4, form, .backtolist, .form-group {
+    margin: 20px;
+}
+
+.control-label, .btn-primary {
+    display: inline-block;
+    width: 100px;
+}
+
+.control-label, .form-check-label {
+    color: white;
+}
+
+.details-table {
+    color: white;
+    margin: 20px;
+    margin-bottom: 40px;
+}
+
+.col-sm-10 {
+    margin: 5px auto 10px 30px;
+}
+
+#count {
+    max-width: 55px;
+    text-align: center;
+}
+
+.itemcount {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
 :link {
     color: white;
 }

@@ -7,6 +7,10 @@
 <body>
     <header>
         <h2>Room Plans</h2>
+        <div class="itemcount">
+            <p>Count</p>
+            <p>@Html.TextBox("count", Model.Count().ToString())</p>
+        </div>
         <p>Room plans are combinations of size layouts and amenity groups.</p>
         <p>Create a new room plan by selecting the room size.</p>
         <p>Configure the amenities for the new room plan on the 'Amenity Configurations' page.</p>
@@ -18,6 +22,12 @@
                asp-action="Index">Go Home</a>
         </p>
     </header>
+    <form asp-controller="RoomPlan" asp-action="Index" method="get" class="form-group">
+        <p>
+            <input type="text" placeholder="Enter search criteria" name="SearchString">
+            <input type="submit" value="Search" class="btn btn-primary">
+        </p>
+    </form>
     <table class="table">
         <thead>
             <tr>
@@ -37,7 +47,7 @@
                     <td>
                         @*<a id="item-links" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |*@
                         <a id="item-links" asp-action="Details" asp-route-id="@item.ID">Details</a> @*|
-                        <a id="item-links" asp-action="Delete" asp-route-id="@item.ID">Delete</a>*@
+                            <a id="item-links" asp-action="Delete" asp-route-id="@item.ID">Delete</a>*@
                     </td>
                 </tr>
             }

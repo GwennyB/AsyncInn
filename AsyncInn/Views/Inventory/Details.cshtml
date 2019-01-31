@@ -1,7 +1,7 @@
 ﻿@model AsyncInn.Models.Inventory
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <div>
     <h4>Inventory</h4>
     <hr />
-    <dl class="row">
+    <dl class="row details-table">
         @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ID)
         </dt>*@
@@ -46,8 +46,8 @@
         </dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+<div class="backtolist">
+    @Html.ActionLink("Edit", "Edit", new { ViewBag.HotelID, ViewBag.RoomNumber }) |
     <a asp-action="Index">Back to List</a>
 </div>
 </body>

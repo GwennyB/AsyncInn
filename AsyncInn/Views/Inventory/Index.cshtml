@@ -11,6 +11,10 @@
 <body>
     <header>
         <h2>Rooms Inventory</h2>
+        <div class="itemcount">
+            <p>Count</p>
+            <p>@Html.TextBox("count", Model.Count().ToString())</p>
+        </div>
         <p>This is a complete inventory of all rooms in all Async Inn locations.</p>
         <p>
             <a asp-action="Create">Click here to add a room to a specific location.</a>
@@ -20,6 +24,7 @@
                asp-action="Index">Go Home</a>
         </p>
     </header>
+
     <table class="table">
         <thead>
             <tr>
@@ -40,6 +45,11 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PetsOK)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomPlan.RoomConfigGroup)
+                </th>
+                <th>
                 </th>
                 <th></th>
             </tr>
@@ -66,9 +76,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PetsOK)
                 </td>
+                @*HELP! How to display count? The 'th' is rendering, but it's blank.*@
+                <th>
+                    @Html.DisplayFor(modelItem => item.RoomPlan.RoomConfigGroup.Count)
+                </th>
                 <td class="item-links">
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) @*|
+                    @Html.ActionLink("Edit", "Edit", new { item.HotelID, item.RoomNumber }) |
+                    @Html.ActionLink("Details", "Details", new { item.HotelID, item.RoomNumber }) @*|
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>

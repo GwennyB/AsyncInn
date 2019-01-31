@@ -129,9 +129,9 @@ namespace AsyncInn.Controllers
         //}
 
         // GET: RoomConfig/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int RoomPlanID, int AmenityID)
         {
-            if (id == null)
+            if (RoomPlanID < 1 || AmenityID < 1)
             {
                 return NotFound();
             }
@@ -139,7 +139,8 @@ namespace AsyncInn.Controllers
             var roomConfig = await _context.RoomConfig
                 .Include(r => r.Amenity)
                 .Include(r => r.RoomPlan)
-                .FirstOrDefaultAsync(m => m.RoomPlanID == id);
+                .FirstOrDefaultAsync(m => m.RoomPlanID == RoomPlanID && m.AmenityID == AmenityID);
+
             if (roomConfig == null)
             {
                 return NotFound();
@@ -151,9 +152,9 @@ namespace AsyncInn.Controllers
         // POST: RoomConfig/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int RoomPlanID, int AmenityID)
         {
-            var roomConfig = await _context.RoomConfig.FindAsync(id);
+            var roomConfig = await _context.RoomConfig.FirstOrDefaultAsync(m => m.RoomPlanID == RoomPlanID && m.AmenityID == AmenityID);
             _context.RoomConfig.Remove(roomConfig);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
