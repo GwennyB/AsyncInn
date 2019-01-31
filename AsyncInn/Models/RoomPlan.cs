@@ -13,6 +13,7 @@ namespace AsyncInn.Models
         [DisplayName("Room Plan Name")]
         public string RoomType { get; set; }
 
+        [DisplayName("Amenities")]
         public ICollection<RoomConfig> RoomConfigGroup { get; set; }
 
     }

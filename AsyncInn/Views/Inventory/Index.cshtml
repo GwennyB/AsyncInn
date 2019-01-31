@@ -46,7 +46,9 @@
                     @Html.DisplayNameFor(model => model.PetsOK)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PetsOK)
+                    @Html.DisplayNameFor(model => model.RoomPlan.RoomConfigGroup)
+                </th>
+                <th>
                 </th>
                 <th></th>
             </tr>
@@ -73,6 +75,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PetsOK)
                 </td>
+                @*HELP! How to display count? The 'th' is rendering, but it's blank.*@
+                <th>
+                    @Html.DisplayFor(modelItem => item.RoomPlan.RoomConfigGroup.Count)
+                </th>
                 <td class="item-links">
                     @Html.ActionLink("Edit", "Edit", new { item.HotelID, item.RoomNumber }) |
                     @Html.ActionLink("Details", "Details", new { item.HotelID, item.RoomNumber }) @*|
