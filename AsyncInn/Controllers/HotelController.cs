@@ -21,8 +21,29 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Hotel
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            var searchResults = from hotel in _context.GetHotels()
+                                select hotel;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchResults = searchResults.Where(s => 
+                    s.Name.ToLower().Contains(searchString.ToLower()) ||
+                    s.Address.ToLower().Contains(searchString.ToLower()) ||
+                    s.City.ToLower().Contains(searchString.ToLower())
+                    );
+                return View(searchResults);
+            }
+            return View(_context.GetHotels());
+        }
+
+        // GET: Hotel/Search
+        public IActionResult Search(string filter)
+        {
+            //if (searchResults == null)
+            //{
+            //    return NotFound();
+            //}
             return View(_context.GetHotels());
         }
 
@@ -54,7 +75,7 @@ namespace AsyncInn.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone,City,State,Country")] Hotel hotel)
         {
             if (ModelState.IsValid)
