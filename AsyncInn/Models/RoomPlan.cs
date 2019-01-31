@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace AsyncInn.Models
     {
         public int ID { get; set; }
         public Layout Layout { get; set; }
+        [DisplayName("Room Plan Name")]
         public string RoomType { get; set; }
 
         public ICollection<RoomConfig> RoomConfigGroup { get; set; }

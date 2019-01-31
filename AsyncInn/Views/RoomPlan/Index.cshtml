@@ -7,6 +7,10 @@
 <body>
     <header>
         <h2>Room Plans</h2>
+        <div class="itemcount">
+            <p>Count</p>
+            <p>@Html.TextBox("count", Model.Count().ToString())</p>
+        </div>
         <p>Room plans are combinations of size layouts and amenity groups.</p>
         <p>Create a new room plan by selecting the room size.</p>
         <p>Configure the amenities for the new room plan on the 'Amenity Configurations' page.</p>

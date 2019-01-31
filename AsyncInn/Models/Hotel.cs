@@ -9,6 +9,7 @@ namespace AsyncInn.Models
     public class Hotel
     {
         public int ID { get; set; }
+        [DisplayName("Hotel Name")]
         public string Name { get; set; }
         public string Address { get; set; }
         public long Phone { get; set; }
@@ -16,6 +17,7 @@ namespace AsyncInn.Models
         public State State { get; set; }
         public Country Country { get; set; }
 
+        [DisplayName("Rooms")]
         public ICollection<Inventory> HotelInventory { get; set; }
 
     }

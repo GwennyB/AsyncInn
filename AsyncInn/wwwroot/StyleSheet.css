@@ -123,6 +123,17 @@ h4, form, .backtolist, .form-group {
     margin: 5px auto 10px 30px;
 }
 
+#count {
+    max-width: 55px;
+    text-align: center;
+}
+
+.itemcount {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
 :link {
     color: white;
 }

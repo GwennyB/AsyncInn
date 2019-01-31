@@ -11,6 +11,10 @@
 <body>
     <header>
         <h2>Rooms Inventory</h2>
+        <div class="itemcount">
+            <p>Count</p>
+            <p>@Html.TextBox("count", Model.Count().ToString())</p>
+        </div>
         <p>This is a complete inventory of all rooms in all Async Inn locations.</p>
         <p>
             <a asp-action="Create">Click here to add a room to a specific location.</a>
@@ -37,6 +41,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Rate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PetsOK)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PetsOK)

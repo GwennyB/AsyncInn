@@ -11,6 +11,10 @@
 <body>
     <header>
         <h2>Amenities</h2>
+        <div class="itemcount">
+            <p>Count</p>
+            <p>@Html.TextBox("count", Model.Count().ToString())</p>
+        </div>
         <p>This is a complete list of all amenities available for installation in rooms at Async Inn locations.</p>
         <p>
             <a asp-action="Create">Click here to new amenities that can be installed in rooms.</a>
