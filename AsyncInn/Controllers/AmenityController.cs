@@ -21,8 +21,17 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Amenity
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            var searchResults = from roomPlan in _context.GetAmenities()
+                                select roomPlan;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchResults = searchResults.Where(s =>
+                    s.Description.ToLower().Contains(searchString.ToLower())
+                    );
+                return View(searchResults);
+            }
             return View(_context.GetAmenities());
         }
 

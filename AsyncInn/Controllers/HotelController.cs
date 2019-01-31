@@ -37,16 +37,6 @@ namespace AsyncInn.Controllers
             return View(_context.GetHotels());
         }
 
-        // GET: Hotel/Search
-        public IActionResult Search(string filter)
-        {
-            //if (searchResults == null)
-            //{
-            //    return NotFound();
-            //}
-            return View(_context.GetHotels());
-        }
-
         // GET: Hotel/Details/5
         public IActionResult Details(int? id)
         {

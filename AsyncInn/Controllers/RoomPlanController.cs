@@ -21,8 +21,17 @@ namespace AsyncInn.Controllers
         }
 
         // GET: RoomPlans
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            var searchResults = from roomPlan in _context.GetRoomPlans()
+                                select roomPlan;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchResults = searchResults.Where(s =>
+                    s.RoomType.ToLower().Contains(searchString.ToLower())
+                    );
+                return View(searchResults);
+            }
             return View(_context.GetRoomPlans());
         }
 
