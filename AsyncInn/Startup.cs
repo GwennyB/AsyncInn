@@ -24,7 +24,9 @@ namespace AsyncInn
         /// <param name="configuration"> config properties set </param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace AsyncInn
             services.AddMvc();
 
             services.AddDbContext<AsyncInnDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
 
             // TODO: Register DB interface & service
             services.AddScoped<IAmenity, AmenityService>();
@@ -66,13 +68,6 @@ namespace AsyncInn
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //    name: "default",
-            //    template: "{controller=Home}/{action=Index}/{id?}");
-            //});
 
 
         }

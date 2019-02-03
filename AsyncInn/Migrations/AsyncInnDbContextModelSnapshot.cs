@@ -141,7 +141,8 @@ namespace AsyncInn.Migrations
 
                     b.Property<bool>("PetsOK");
 
-                    b.Property<decimal>("Rate");
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(8,2)");
 
                     b.Property<string>("RoomName");
 

@@ -15,16 +15,29 @@ namespace AsyncInn.Controllers
     {
         private readonly IRoomPlan _context;
 
+        /// <summary>
+        /// sets database context to _context field
+        /// </summary>
+        /// <param name="context"></param>
         public RoomPlanController(IRoomPlan context)
         {
             _context = context;
         }
 
-        // GET: RoomPlans
-        public IActionResult Index(string searchString)
+        /// <summary>
+        /// GET: RoomPlans
+        /// gets all (filtered) RoomPlans and sends to Client in Index view
+        /// </summary>
+        /// <param name="searchString"> filter criterion </param>
+        /// <returns> populated Index view </returns>
+        public async Task<IActionResult> Index(string searchString)
         {
             var searchResults = from roomPlan in _context.GetRoomPlans()
                                 select roomPlan;
+            foreach (RoomPlan roomPlan in searchResults)
+            {
+                roomPlan.RoomConfigGroup = await _context.GetRoomConfigGroup(roomPlan.ID);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchResults = searchResults.Where(s =>
@@ -35,7 +48,12 @@ namespace AsyncInn.Controllers
             return View(_context.GetRoomPlans());
         }
 
-        // GET: RoomPlans/Details/5
+        /// <summary>
+        /// GET: RoomPlans/Details/5 
+        /// gets row 'id' and sends to Client in Details view
+        /// </summary>
+        /// <param name="id"> ID of row to show </param>
+        /// <returns> populated Details view (or NotFound error view) </returns>
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -52,18 +70,24 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        // GET: RoomPlans/Create
+        /// <summary>
+        /// GET: RoomPlans/Create
+        /// loads Create page
+        /// </summary>
+        /// <returns> Create view </returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: RoomPlans/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: RoomPlans/Create
+        /// adds 'roomPlan' to table as new row
+        /// </summary>
+        /// <param name="roomPlan"> RoomPlan to add </param>
+        /// <returns> populated Index view with new row shown (or Delete view with 'roomPlan' details populated if model errors exist) </returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Layout")] RoomPlan roomPlan)
+        public async Task<IActionResult> Create([Bind("ID,Layout,RoomType")] RoomPlan roomPlan)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +97,12 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        // GET: RoomPlans/Edit/5
+        /// <summary>
+        /// GET: RoomPlans/Edit/5
+        /// gets a specific row from table 
+        /// </summary>
+        /// <param name="id"> ID of row to get </param>
+        /// <returns> Edit view with detail populated for row 'id' </returns>
         public IActionResult Edit(int id)
         {
             var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
@@ -84,11 +113,14 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        // POST: RoomPlans/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: RoomPlans/Edit/5
+        /// updates table with details in 'roomPlan'
+        /// </summary>
+        /// <param name="id"> ID of RoomPlan to update </param>
+        /// <param name="roomPlan"> roomPlan details to use for update </param>
+        /// <returns>Index view populated with all records (including update), or NotFound error page (if 'id' not found), or Edit view with 'roomPlan' populated (if model errors exist)</returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Layout")] RoomPlan roomPlan)
         {
             if (id != roomPlan.ID)
@@ -118,7 +150,12 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        // GET: RoomPlans/Delete/5
+        /// <summary>
+        /// GET: RoomPlans/Delete/5
+        /// loads Delete confirmation page with details shown for 'id'
+        /// </summary>
+        /// <param name="id"> ID of row to delete </param>
+        /// <returns> 'Delete' confirmation page with 'id' loaded, or NotFound error if not found or none selected </returns>
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,9 +173,13 @@ namespace AsyncInn.Controllers
             return View(roomPlan);
         }
 
-        // POST: RoomPlans/Delete/5
+        /// <summary>
+        /// POST: RoomPlans/Delete/5
+        /// deletes 'id' row from table
+        /// </summary>
+        /// <param name="id"> ID of row to delete </param>
+        /// <returns> Index view showing updated list of rows </returns>
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
@@ -146,6 +187,11 @@ namespace AsyncInn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// HELPER: confirms existence of row by ID
+        /// </summary>
+        /// <param name="id"> ID of row to confirm </param>
+        /// <returns> true if present, false if not </returns>
         private bool RoomPlanExists(int id)
         {
             return _context.GetRoomPlans().Any(e => e.ID == id);
