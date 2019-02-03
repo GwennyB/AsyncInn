@@ -59,10 +59,7 @@ namespace AsyncInn.Controllers
         }
 
         // POST: RoomPlans/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Layout")] RoomPlan roomPlan)
         {
             if (ModelState.IsValid)
@@ -85,10 +82,7 @@ namespace AsyncInn.Controllers
         }
 
         // POST: RoomPlans/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Layout")] RoomPlan roomPlan)
         {
             if (id != roomPlan.ID)
@@ -138,7 +132,6 @@ namespace AsyncInn.Controllers
 
         // POST: RoomPlans/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);

@@ -58,9 +58,14 @@ namespace AsyncInn.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create([Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID,RoomName")] Inventory inventory)
         {
+            var checkDupe = await _context.Inventory.FirstOrDefaultAsync(room => room.RoomNumber == inventory.RoomNumber && room.HotelID == inventory.HotelID);
+            if(checkDupe != null)
+            {
+                return View(checkDupe);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(inventory);
@@ -94,7 +99,7 @@ namespace AsyncInn.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Edit(int HotelID, int RoomNumber, [Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
         {
             //if (id != inventory.HotelID)
@@ -149,7 +154,7 @@ namespace AsyncInn.Controllers
 
         // POST: Inventory/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirmed(int HotelID, int RoomNumber)
         {
             var inventory = await _context.Inventory.FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
