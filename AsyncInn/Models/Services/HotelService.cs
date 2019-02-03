@@ -32,6 +32,12 @@ namespace AsyncInn.Models.Services
             return _context.Hotel.ToList<Hotel>();
         }
 
+        // read
+        public async Task<List<Inventory>> GetHotelInventory(int id)
+        {
+            return await _context.Inventory.Where(i => i.HotelID == id).ToListAsync<Inventory>();
+        }
+
         // update
         public async Task UpdateHotel(Hotel hotel)
         {

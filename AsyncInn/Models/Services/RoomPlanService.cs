@@ -32,6 +32,12 @@ namespace AsyncInn.Models.Services
             return _context.RoomPlan.ToList<RoomPlan>();
         }
 
+        // read
+        public async Task<List<RoomConfig>> GetRoomConfigGroup(int id)
+        {
+            return await _context.RoomConfig.Where(i => i.RoomPlanID == id).ToListAsync<RoomConfig>();
+        }
+
         // update
         public async Task UpdateRoomPlan(RoomPlan roomPlan)
         {

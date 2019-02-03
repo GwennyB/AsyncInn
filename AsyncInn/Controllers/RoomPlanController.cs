@@ -21,10 +21,14 @@ namespace AsyncInn.Controllers
         }
 
         // GET: RoomPlans
-        public IActionResult Index(string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             var searchResults = from roomPlan in _context.GetRoomPlans()
                                 select roomPlan;
+            foreach (RoomPlan roomPlan in searchResults)
+            {
+                roomPlan.RoomConfigGroup = await _context.GetRoomConfigGroup(roomPlan.ID);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchResults = searchResults.Where(s =>

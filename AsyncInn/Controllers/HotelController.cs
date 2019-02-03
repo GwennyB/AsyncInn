@@ -21,10 +21,14 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Hotel
-        public IActionResult Index(string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             var searchResults = from hotel in _context.GetHotels()
                                 select hotel;
+            foreach(Hotel hotel in searchResults)
+            {
+                hotel.HotelInventory = await _context.GetHotelInventory(hotel.ID);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchResults = searchResults.Where(s => 

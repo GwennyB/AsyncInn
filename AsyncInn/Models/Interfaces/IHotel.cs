@@ -14,6 +14,9 @@ namespace AsyncInn.Models.Interfaces
         // read
         List<Hotel> GetHotels();
 
+        // read
+        Task<List<Inventory>> GetHotelInventory(int iD);
+
         // update
         Task UpdateHotel(Hotel hotel);
 

@@ -13,6 +13,9 @@ namespace AsyncInn.Models.Interfaces
         // read
         List<RoomPlan> GetRoomPlans();
 
+        // read
+        Task<List<RoomConfig>> GetRoomConfigGroup(int id);
+
         // update
         Task UpdateRoomPlan(RoomPlan roomPlan);
 
