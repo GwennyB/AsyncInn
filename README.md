@@ -15,7 +15,7 @@ MODEL - The classes define the data model. They are built to the database schema
 
 VIEW - This application uses Razor syntax to inject model data into HTML view templates.
 
-CONTROLLER - Controllers exist for the splash page ('Home') and each (non-enum) table listed in the database schema. Each contains CRUD features to permit all allowed database data manipulation (some CRUD features are excluded for to support business rules (such as editing an amenity)).
+CONTROLLER - Controllers exist for the splash page ('Home') and each (non-enum) table listed in the database schema. Each contains CRUD features to permit all allowed database data manipulation (some CRUD features are excluded for to support business rules (such as editing an amenity)). Primary tables (Hotel, RoomPlan, Amenity) rely on custom interface to decouple the client from the database.
 
 ## Database Schema
 Inventory
@@ -41,25 +41,37 @@ This table standardizes abbreviations for states and relevant countries in the U
 ![database schema](assets/schema.png)
 
 # Usage
-Shown below are landing (default) pages for each table's interface.
+Shown below are landing (default) pages for each table's interface and example create, edit, and delete pages.
 
 Home/Index:
 ![home page](assets/run-home.PNG)
 
+Hotel/Index;
+![hotels index](assets/run-hotel.PNG)
+
+Hotel/Create (example only - can create other assets also):
+![home page](assets/run-create.PNG)
+
+Hotel/Edit (example only - can edit other assets also):
+![home page](assets/run-edit.PNG)
+
+Hotel/Delete (example only - can delete other assets also)::
+![home page](assets/run-delete.PNG)
+
 Inventory/Index:
-![home page](assets/run-inventory.PNG)
+![inventory index](assets/run-inventory.PNG)
 
 RoomPlan/Index:
-![home page](assets/run-roomplan.PNG)
+![room plan index](assets/run-roomplan.PNG)
 
 RoomConfig/Index:
-![home page](assets/run-roomconfig.PNG)
+![room config index](assets/run-roomconfig.PNG)
 
 Amenity/Index;
-![home page](assets/run-amenity.PNG)
+![amenity index](assets/run-amenity.PNG)
 
-Hotel/Index;
-![home page](assets/run-hotel.PNG)
+# Testing
+Testing ensures that all getters, setters, and service methods function as intended.
 
 
 # Credit
