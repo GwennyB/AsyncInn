@@ -83,7 +83,7 @@ namespace UnitTests.RouteTests
         }
 
         /// <summary>
-        /// verifies GetHotelInventory returns a list of rooms
+        /// verifies GetRoomConfigGroup returns a list of rooms
         /// </summary>
         [Fact]
         public async void CanGetRoomConfigGroup()
