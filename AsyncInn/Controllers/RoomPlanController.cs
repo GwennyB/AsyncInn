@@ -48,27 +48,27 @@ namespace AsyncInn.Controllers
             return View(_context.GetRoomPlans());
         }
 
-        /// <summary>
-        /// GET: RoomPlans/Details/5 
-        /// gets row 'id' and sends to Client in Details view
-        /// </summary>
-        /// <param name="id"> ID of row to show </param>
-        /// <returns> populated Details view (or NotFound error view) </returns>
-        public IActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        ///// <summary>
+        ///// GET: RoomPlans/Details/5 
+        ///// gets row 'id' and sends to Client in Details view
+        ///// </summary>
+        ///// <param name="id"> ID of row to show </param>
+        ///// <returns> populated Details view (or NotFound error view) </returns>
+        //public IActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
-            if (roomPlan == null)
-            {
-                return NotFound();
-            }
+        //    var roomPlan = _context.GetRoomPlans().FirstOrDefault(m => m.ID == id);
+        //    if (roomPlan == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(roomPlan);
-        }
+        //    return View(roomPlan);
+        //}
 
         /// <summary>
         /// GET: RoomPlans/Create
@@ -121,7 +121,7 @@ namespace AsyncInn.Controllers
         /// <param name="roomPlan"> roomPlan details to use for update </param>
         /// <returns>Index view populated with all records (including update), or NotFound error page (if 'id' not found), or Edit view with 'roomPlan' populated (if model errors exist)</returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Layout")] RoomPlan roomPlan)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Layout,RoomType")] RoomPlan roomPlan)
         {
             if (id != roomPlan.ID)
             {

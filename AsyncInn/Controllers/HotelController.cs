@@ -49,28 +49,28 @@ namespace AsyncInn.Controllers
             return View(_context.GetHotels());
         }
 
-        /// <summary>
-        /// GET: Hotel/Details/5
-        /// gets row 'id' and sends to Client in Details view
-        /// </summary>
-        /// <param name="id"> ID of row to show </param>
-        /// <returns> populated Details view (or NotFound error view) </returns>
-        public IActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        ///// <summary>
+        ///// GET: Hotel/Details/5
+        ///// gets row 'id' and sends to Client in Details view
+        ///// </summary>
+        ///// <param name="id"> ID of row to show </param>
+        ///// <returns> populated Details view (or NotFound error view) </returns>
+        //public IActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var hotel = _context.GetHotels()
-                .FirstOrDefault(m => m.ID == id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
+        //    var hotel = _context.GetHotels()
+        //        .FirstOrDefault(m => m.ID == id);
+        //    if (hotel == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(hotel);
-        }
+        //    return View(hotel);
+        //}
 
         /// <summary>
         /// GET: Hotel/Create

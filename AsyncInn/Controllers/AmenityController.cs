@@ -43,28 +43,28 @@ namespace AsyncInn.Controllers
             return View(_context.GetAmenities());
         }
 
-        /// <summary>
-        /// GET: Amenity/Details/5
-        /// gets row 'id' and sends to Client in Details view
-        /// </summary>
-        /// <param name="id"> ID of row to show </param>
-        /// <returns> populated Details view (or NotFound error view) </returns>
-        public IActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        ///// <summary>
+        ///// GET: Amenity/Details/5
+        ///// gets row 'id' and sends to Client in Details view
+        ///// </summary>
+        ///// <param name="id"> ID of row to show </param>
+        ///// <returns> populated Details view (or NotFound error view) </returns>
+        //public IActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var amenity = _context.GetAmenities()
-                .FirstOrDefault(m => m.ID == id);
-            if (amenity == null)
-            {
-                return NotFound();
-            }
+        //    var amenity = _context.GetAmenities()
+        //        .FirstOrDefault(m => m.ID == id);
+        //    if (amenity == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(amenity);
-        }
+        //    return View(amenity);
+        //}
 
         /// <summary>
         /// GET: Amenity/Create
