@@ -135,7 +135,14 @@ namespace AsyncInn.Controllers
             {
                 return NotFound();
             }
-
+            if(RoomNumber != inventory.RoomNumber)
+            {
+                var checkDupe = _context.Inventory.Where(s => s.HotelID == inventory.HotelID && s.RoomNumber == inventory.RoomNumber);
+                if(checkDupe != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
             if (ModelState.IsValid)
             {
                 try
