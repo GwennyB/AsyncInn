@@ -20,6 +20,10 @@ namespace AsyncInn.Models
         [DisplayName("Rooms")]
         public ICollection<Inventory> HotelInventory { get; set; }
 
+        public object ToList()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

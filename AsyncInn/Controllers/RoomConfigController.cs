@@ -43,7 +43,6 @@ namespace AsyncInn.Controllers
         {
             ViewData["AmenityID"] = new SelectList(_context.Amenity, "ID", "Description");
             ViewData["RoomPlanID"] = new SelectList(_context.RoomPlan, "ID", "RoomType");
-            //ViewData["RoomConfigGroup"] = new SelectList(_context.RoomConfig, "HotelID", "AmenityID");
             return View();
         }
 
