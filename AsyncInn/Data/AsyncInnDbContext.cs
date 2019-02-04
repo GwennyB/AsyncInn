@@ -36,7 +36,7 @@ namespace AsyncInn.Data
                 {
                     ID = 1,
                     Name = "Hotel AAA",
-                    Phone = 0001112222,
+                    Phone = 8001112222,
                     Address = "100 Main St",
                     City = "Austin",
                     State = State.TX,

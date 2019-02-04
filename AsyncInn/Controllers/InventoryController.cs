@@ -29,34 +29,34 @@ namespace AsyncInn.Controllers
         /// <returns> populated Index view </returns>
         public async Task<IActionResult> Index()
         {
-            var asyncInnDbContext = _context.Inventory.Include(i => i.Hotel).Include(i => i.RoomPlan);
-            return View(await asyncInnDbContext.ToListAsync());
+            var rooms = _context.Inventory.Include(i => i.Hotel).Include(i => i.RoomPlan);
+            return View(await rooms.ToListAsync());
         }
 
-        /// <summary>
-        /// GET: Inventory/Details/5
-        /// gets row 'id' and sends to Client in Details view
-        /// </summary>
-        /// <param name="id"> ID of row to show </param>
-        /// <returns> populated Details view (or NotFound error view) </returns>
-        public async Task<IActionResult> Details(int HotelID, int RoomNumber)
-        {
-            if (HotelID < 1 || RoomNumber < 1)
-            {
-                return NotFound();
-            }
+        ///// <summary>
+        ///// GET: Inventory/Details/5
+        ///// gets row 'id' and sends to Client in Details view
+        ///// </summary>
+        ///// <param name="id"> ID of row to show </param>
+        ///// <returns> populated Details view (or NotFound error view) </returns>
+        //public async Task<IActionResult> Details(int HotelID, int RoomNumber)
+        //{
+        //    if (HotelID < 1 || RoomNumber < 1)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var inventory = await _context.Inventory
-                .Include(i => i.Hotel)
-                .Include(i => i.RoomPlan)
-                .FirstOrDefaultAsync(m => m.HotelID == HotelID && m.RoomNumber == RoomNumber);
-            if (inventory == null)
-            {
-                return NotFound();
-            }
+        //    var inventory = await _context.Inventory
+        //        .Include(i => i.Hotel)
+        //        .Include(i => i.RoomPlan)
+        //        .FirstOrDefaultAsync(m => m.HotelID == HotelID && m.RoomNumber == RoomNumber);
+        //    if (inventory == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(inventory);
-        }
+        //    return View(inventory);
+        //}
 
         /// <summary>
         /// GET: Inventory/Create
@@ -104,10 +104,10 @@ namespace AsyncInn.Controllers
         /// <returns> Edit view with detail populated for row 'id' </returns>
         public async Task<IActionResult> Edit(int HotelID, int RoomNumber)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
+            if (HotelID < 1 || RoomNumber < 1)
+            {
+                return NotFound();
+            }
 
             var inventory = await _context.Inventory.FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
             if (inventory == null)
@@ -119,6 +119,7 @@ namespace AsyncInn.Controllers
             return View(inventory);
         }
 
+
         /// <summary>
         /// POST: Inventory/Edit/5
         /// updates table with details in 'inventory'
@@ -128,12 +129,12 @@ namespace AsyncInn.Controllers
         /// <param name="inventory"> inventory details to use for update </param>
         /// <returns> Index view populated with all records (including update), or NotFound error page (if row not found), or Edit view with 'inventory' populated (if model errors exist) </returns>
         [HttpPost]
-        public async Task<IActionResult> Edit(int HotelID, int RoomNumber, [Bind("ID,RoomNumber,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
+        public async Task<IActionResult> Edit(int HotelID, int RoomNumber, [Bind("ID,RoomNumber,RoomName,Rate,PetsOK,HotelID,RoomPlanID")] Inventory inventory)
         {
-            //if (id != inventory.HotelID)
-            //{
-            //    return NotFound();
-            //}
+            if (HotelID < 1 || RoomNumber < 1 || inventory == null)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -197,7 +198,7 @@ namespace AsyncInn.Controllers
         public async Task<IActionResult> DeleteConfirmed(int HotelID, int RoomNumber)
         {
             var inventory = await _context.Inventory.FirstOrDefaultAsync(room => room.HotelID == HotelID && room.RoomNumber == RoomNumber);
-        _context.Inventory.Remove(inventory);
+            _context.Inventory.Remove(inventory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -207,9 +208,9 @@ namespace AsyncInn.Controllers
         /// </summary>
         /// <param name="id"> ID of row to confirm </param>
         /// <returns> true if present, false if not </returns>
-        private bool InventoryExists(int HotelID, int RoomNumber)
+        private bool InventoryExists(int id)
         {
-            return _context.Inventory.Any(e => e.HotelID == HotelID && e.RoomNumber == RoomNumber);
+            return _context.Inventory.Any(e => e.HotelID == id);
         }
     }
 }
