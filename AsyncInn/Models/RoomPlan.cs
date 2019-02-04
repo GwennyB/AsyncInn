@@ -10,6 +10,7 @@ namespace AsyncInn.Models
     {
         public int ID { get; set; }
         public Layout Layout { get; set; }
+
         [DisplayName("Room Plan Name")]
         public string RoomType { get; set; }
 
