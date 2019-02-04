@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace UnitTests.RouteTests
 {
-    public class HotelRouteTests
+    public class HotelServiceTests
     {
         /// <summary>
         /// verifies CreateHotel creates a hotel
@@ -51,6 +51,11 @@ namespace UnitTests.RouteTests
             using (AsyncInnDbContext context = new AsyncInnDbContext(options))
             {
                 // Arrange
+                var dumpList = context.Hotel.ToList(); 
+                foreach (Hotel item in dumpList)
+                {
+                    context.Hotel.Remove(item);
+                }
                 Hotel hotel = new Hotel();
                 hotel.ID = 101;
                 hotel.Name = "name";
@@ -94,6 +99,16 @@ namespace UnitTests.RouteTests
             using (AsyncInnDbContext context = new AsyncInnDbContext(options))
             {
                 // Arrange
+                var dumpList = context.Hotel.ToList();
+                foreach (Hotel item in dumpList)
+                {
+                    context.Hotel.Remove(item);
+                }
+                var dumpListTwo = context.Inventory.ToList();
+                foreach (Inventory item in dumpListTwo)
+                {
+                    context.Inventory.Remove(item);
+                }
                 Hotel hotel = new Hotel();
                 hotel.ID = 103;
                 hotel.Name = "name";
@@ -104,22 +119,23 @@ namespace UnitTests.RouteTests
                 hotel.Country = Country.United_States;
 
                 Inventory roomOne = new Inventory();
-                roomOne.HotelID = 50;
+                roomOne.HotelID = 103;
                 roomOne.RoomNumber = 200;
                 Inventory roomTwo = new Inventory();
-                roomOne.HotelID = 55;
-                roomOne.RoomNumber = 100;
-                List<Inventory> rooms = new List<Inventory>();
-                rooms.Add(roomOne);
-                rooms.Add(roomTwo);
-                hotel.HotelInventory = rooms;
+                roomTwo.HotelID = 103;
+                roomTwo.RoomNumber = 100;
+                List<Inventory> roomsList = new List<Inventory>();
+                roomsList.Add(roomOne);
+                roomsList.Add(roomTwo);
+                context.Inventory.Add(roomOne);
+                context.Inventory.Add(roomTwo);
 
                 // Act
                 HotelService service = new HotelService(context);
                 await service.CreateHotel(hotel);
-                var result = await service.GetHotelInventory(55);
+                var result = await service.GetHotelInventory(hotel.ID);
                 // Assert
-                Assert.Equal(hotel.HotelInventory, result);
+                Assert.Equal(roomsList, result);
             }
         }
 
@@ -134,6 +150,11 @@ namespace UnitTests.RouteTests
             using (AsyncInnDbContext context = new AsyncInnDbContext(options))
             {
                 // Arrange
+                var dumpList = context.Hotel.ToList();
+                foreach (Hotel item in dumpList)
+                {
+                    context.Hotel.Remove(item);
+                }
                 Hotel hotel = new Hotel();
                 hotel.ID = 104;
                 hotel.Name = "name";
@@ -165,6 +186,11 @@ namespace UnitTests.RouteTests
             using (AsyncInnDbContext context = new AsyncInnDbContext(options))
             {
                 // Arrange
+                var dumpList = context.Hotel.ToList();
+                foreach (Hotel item in dumpList)
+                {
+                    context.Hotel.Remove(item);
+                }
                 Hotel hotel = new Hotel();
                 hotel.ID = 105;
                 hotel.Name = "name";

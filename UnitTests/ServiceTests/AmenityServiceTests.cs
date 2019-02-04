@@ -5,7 +5,7 @@ using AsyncInn.Models;
 
 namespace UnitTests.RouteTests
 {
-    public class HomeRouteTests
+    public class AmenityServiceTests
     {
         [Fact]
         public void Test1()
