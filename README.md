@@ -1,3 +1,5 @@
+## *** NO LONGER DEPLOYED ON AZURE ***  
+
 # AsyncInn
 This ASP.NET Core MVC web application is a full-CRUD SQL Server based room 'inventory' management system for a fictional hotel chain. 
 
